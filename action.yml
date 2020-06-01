@@ -1,0 +1,16 @@
+name: 'Preview app'
+description: 'Adds the preview app url to the pull request'
+inputs:
+  repo-token:
+    description: 'The GITHUB_TOKEN secret'
+    required: true
+  body-template:
+    description: 'Body template where branch info gets substituted in'
+    required: true
+    default: '[Preview App](https://app.dev.linkfire.co/index.html:pull-%pr_number%)'
+branding:
+  icon: 'edit-3'
+  color: 'green'
+runs:
+  using: 'node12'
+  main: 'index.js'
