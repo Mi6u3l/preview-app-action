@@ -12,10 +12,6 @@ async function run() {
     const branchName = github.context.payload.pull_request.head.ref;
     core.debug(`branch: ${branchName}`);
 
-
-    const match = (upperCase) => upperCase ? matches[0].toUpperCase() : matches[0];
-    core.info(`Matched branch text: ${match(false)}`);
-
     const request = {
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
@@ -30,10 +26,7 @@ async function run() {
 
     processedBody.concat('\n'.2, body);
 
-
-    if (!updateTitle && !updateBody) {
-      return;
-    }
+    request.body = processedBody;
 
     const client = new github.GitHub(inputs.token);
     const response = await client.pulls.update(request);
