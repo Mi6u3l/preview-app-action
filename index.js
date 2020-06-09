@@ -24,7 +24,7 @@ async function run() {
     const processedBody = inputs.bodyTemplate.replace('%pr_number%', request.pull_number);
     core.debug(`processedBody: ${processedBody}`);
 
-    processedBody.concat('\n', body);
+    processedBody = processedBody.concat('\n', body);
 
     request.body = processedBody;
 
