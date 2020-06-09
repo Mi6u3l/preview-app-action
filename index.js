@@ -24,9 +24,7 @@ async function run() {
     const processedBody = inputs.bodyTemplate.replace('%pr_number%', request.pull_number);
     core.debug(`processedBody: ${processedBody}`);
 
-    processedBody = processedBody.concat('\n', body);
-
-    request.body = processedBody;
+    request.body = processedBody.concat('\n', body);
 
     const client = new github.GitHub(inputs.token);
     const response = await client.pulls.update(request);
